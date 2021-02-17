@@ -9,6 +9,7 @@ Backpack's purpose is to do what I need it to do and be highly performant. We go
 ### Features: (WIP)
 * Easy backup and restore using simple cli tools.
 * Verifies file integrity.
+* End-to-end encryption: all keys are stored with the client and the server cannot decrypt data.
 * Only writes to the backup when new files appear or when content changes.
 * Extensibility: Accessible Python code base with hooks for extensions.
 * Storage Flexibility: send backups to a local FS, the Backpack server, S3-like object storage, or others via extensions.
@@ -23,6 +24,8 @@ Backpack's purpose is to do what I need it to do and be highly performant. We go
 **TODO**: talk about file encryption and compression implementation.
 
 ### Notes
+Backpack uses a key stored with the client to encrypt and decrypt backup data. If the client system suffers a catastrophe, that key may go missing. **Back up all Backpack client encryption keys in a secure place**.
+
 Backpack values speed over preserving resources on the client. By default, it will use everything it can. **Make sure you tune the resource limits for Backpack to fit your use case**.
 
 Backpack uses raw TCP sockets for network transport by default. This is to address performance concerns and duplicated work with SSH, SSL, and other authenticated/encrypted sockets. More secure transport can be implemented as an extension (and I will probably implement TLS sockets with mutual authentication) but the project does not assume that it is needed. The data being sent is already encrypted client-side and verified when received. In the author's use case, WireGuard takes care of transport encryption, authentication and authorization. **Make sure that your network transport security is addressed before using Backpack**. If you don't know how to make it safe, I recommend against using it.
