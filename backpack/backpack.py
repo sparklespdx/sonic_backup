@@ -20,7 +20,7 @@ def backup_file(path):
 
     remote.send(src, enc)
 
-    print(f"Sent: {src.path}")
+    print(f"Backed Up: {src.path}")
 
 
 def restore_file(path):
