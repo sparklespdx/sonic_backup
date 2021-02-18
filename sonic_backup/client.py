@@ -1,8 +1,7 @@
 import socket
 from sonic_backup.lib import Config, CryptManager, SourceFile, DestinationFile
 
-def backup_file(path):
-    config = Config()
+def backup_file(config, path):
 
     enc = CryptManager(config)
     remote = SonicClient(config)
