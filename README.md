@@ -19,6 +19,9 @@ Sonic Backup's purpose is to do what I need it to do and be highly performant. W
 
 ### Architecture
 **TODO**: high level overview of client and server architecture
+
 **TODO**: walk through backup and restore process
+
 **TODO**: walk through backup file format specification
+
 **TODO**: talk about file encryption and compression implementation.
