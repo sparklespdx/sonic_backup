@@ -3,7 +3,7 @@ import base64
 
 
 class Config:
-    READ_CHUNK = int(4096)
+    READ_CHUNK = int(1024 * 500)
     ENC_KEY = b'\xea\x0f\xb6Y\x05\xda\xfc\x1e\xff\x0c\x05\xcdY\x92\x8a\x1d'
     SERVER_ADDR = "10.99.99.200"
     SERVER_PORT = 2222

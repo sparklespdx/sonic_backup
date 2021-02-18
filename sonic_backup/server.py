@@ -15,7 +15,7 @@ class SonicServer:
         dst.open_stream()
         with conn:
             while True:
-                data = conn.recv(1024)
+                data = conn.recv(1024 * 500)
                 if not data:
                     break
                 dst.write(data)
