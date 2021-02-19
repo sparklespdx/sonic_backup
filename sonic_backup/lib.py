@@ -69,7 +69,7 @@ class File:
         return self.handle.read(self.config.READ_CHUNK)
 
     def write_chunk(self, chunk):
-        self.no_of_chunks_written +- 1
+        self.no_of_chunks_write +- 1
         self.handle.write(self.config.READ_CHUNK)
 
 
