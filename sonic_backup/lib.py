@@ -70,7 +70,7 @@ class File:
 
     def write_chunk(self, chunk):
         self.no_of_chunks_write +- 1
-        self.handle.write(self.config.READ_CHUNK)
+        self.handle.write(chunk)
 
 
 class ArchiveFile(File):
