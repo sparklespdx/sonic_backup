@@ -1,11 +1,12 @@
 import socket
 from sonic_backup.lib import Config, CryptManager, SourceFile, DestinationFile
 
+
 def backup_file(config, path):
 
     enc = CryptManager(config)
     remote = SonicClient(config)
-    src = SourceFile(config, path)
+    src = File(config, path)
 
     print("[***] Sending to backup server...")
     remote.send(src, enc)
@@ -19,7 +20,7 @@ def restore_file(path):
     remote = SonicClient(config)
 
     cryptpath = enc.cryptopath(path)
-    dst = DestinationFile(config, path)
+    dst = ArchiveFile(config, path)
     src = SourceFile(config, cryptpath)
 
     src.open_stream()
@@ -56,7 +57,7 @@ class SonicClient:
         chunk = None
         src.open_stream()
         while chunk != b'':
-            chunk = src.chunk()
+            chunk = src.read_chunk()
             cryptchunk = enc.encrypt(chunk)
             sent = self.socket.sendall(cryptchunk)
             if sent == 0:

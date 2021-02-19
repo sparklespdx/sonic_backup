@@ -1,5 +1,6 @@
 import socket
 
+
 class SonicServer:
 
     def __init__(self, config):
@@ -7,15 +8,15 @@ class SonicServer:
 
     def listen(self, dst):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.bind(("0.0.0.0", self.config.SERVER_PORT))
+        sock.bind((self.SERVER_BIND_ADDR, self.config.SERVER_PORT))
         sock.listen()
-        print("[***] Listening on 0.0.0.0:{self.config.SERVER_PORT}...")
+        print(f"[***] Listening on {self.config.SERVER_BIND_ADDR}:{self.config.SERVER_PORT}...")
         conn, addr = sock.accept()
         print("[***] Connection accepted")
-        dst.open_stream()
+        dst.open_stream(mode='wb')
         with conn:
             while True:
-                data = conn.recv(1024 * 500)
+                data = conn.recv(self.config.READ_CHUNK)
                 if not data:
                     break
                 dst.write(data)
