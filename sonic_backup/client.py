@@ -1,5 +1,5 @@
 import socket
-from sonic_backup.lib import Config, CryptManager, SourceFile, DestinationFile
+from sonic_backup.lib import *
 
 
 def backup_file(config, path):
@@ -21,7 +21,7 @@ def restore_file(path):
 
     cryptpath = enc.cryptopath(path)
     dst = ArchiveFile(config, path)
-    src = SourceFile(config, cryptpath)
+    src = File(config, cryptpath)
 
     src.open_stream()
     dst.open_stream()
