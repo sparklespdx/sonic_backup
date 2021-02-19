@@ -1,11 +1,11 @@
 import socket
-from sonic_backup.lib import *
+from moop.lib import *
 
 
 def backup_file(config, path):
 
     enc = CryptManager(config)
-    remote = SonicClient(config)
+    remote = MoopClient(config)
     src = File(config, path)
 
     print("[***] Sending to backup server...")
@@ -17,7 +17,7 @@ def backup_file(config, path):
 def restore_file(path):
     config = Config()
     enc = CryptManager(config)
-    remote = SonicClient(config)
+    remote = MoopClient(config)
 
     cryptpath = enc.cryptopath(path)
     dst = ArchiveFile(config, path)
@@ -38,7 +38,7 @@ def restore_file(path):
     print(f"Restored: {dst.path}")
 
 
-class SonicClient:
+class MoopClient:
 
     def __init__(self, config):
         self.config = config
