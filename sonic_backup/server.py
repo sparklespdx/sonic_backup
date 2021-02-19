@@ -19,6 +19,6 @@ class SonicServer:
                 data = conn.recv(self.config.READ_CHUNK)
                 if not data:
                     break
-                dst.write(data)
+                dst.write_chunk(data)
         dst.close_stream()
         print("[***] Data written")
