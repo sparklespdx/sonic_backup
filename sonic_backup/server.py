@@ -8,7 +8,7 @@ class SonicServer:
 
     def listen(self, dst):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.bind((self.SERVER_BIND_ADDR, self.config.SERVER_PORT))
+        sock.bind((self.config.SERVER_BIND_ADDR, self.config.SERVER_PORT))
         sock.listen()
         print(f"[***] Listening on {self.config.SERVER_BIND_ADDR}:{self.config.SERVER_PORT}...")
         conn, addr = sock.accept()
